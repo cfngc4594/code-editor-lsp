@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-  } from "@/components/ui/tooltip"
-  import { Check, Copy } from "lucide-react"
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Check, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCodeEditorStore } from "@/store/useCodeEditorStore"
 
@@ -54,7 +54,7 @@ export default function CopyButton() {
             </div>
           </Button>
         </TooltipTrigger>
-        <TooltipContent className="px-2 py-1 text-xs">Click to copy</TooltipContent>
+        <TooltipContent className="px-2 py-1 text-xs">Click to Copy</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )
