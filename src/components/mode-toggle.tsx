@@ -1,9 +1,11 @@
 import { Moon, Sun } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
 import { useTheme } from "@/components/theme-provider"
+import { useCodeEditorStore } from "@/store/useCodeEditorStore"
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme()
+  const { setTheme: setCodeEditorTheme } = useCodeEditorStore()
 
   return (
     <div>
@@ -11,7 +13,11 @@ export function ModeToggle() {
         variant="outline"
         className="group size-9 data-[state=on]:bg-transparent data-[state=on]:hover:bg-muted"
         pressed={theme === "dark"}
-        onPressedChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+        onPressedChange={() => {
+          const isDarkMode = theme === "dark"
+          setTheme(isDarkMode ? "light" : "dark")
+          setCodeEditorTheme(isDarkMode ? "github-light-default" : "github-dark-default")
+        }}
         aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
       >
         {/* Note: After dark mode implementation, rely on dark: prefix rather than group-data-[state=on]: */}
