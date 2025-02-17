@@ -1,12 +1,31 @@
-import { SUPPORTED_LANGUAGES } from "@/constants/language"
-import { useCodeEditorStore } from "@/store/useCodeEditorStore"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { connectToLanguageServer } from '@/lib/language-server'
+import { useCodeEditorStore } from '@/store/useCodeEditorStore'
+import { SUPPORTED_LANGUAGE_SERVERS } from '@/config/language-server'
+import { SUPPORTED_LANGUAGES, SupportedLanguage } from '@/constants/language'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export default function LanguageToggle() {
-  const { language, setLanguage } = useCodeEditorStore()
+  const { language, setLanguage, languageClient, setLanguageClient } = useCodeEditorStore()
 
   return (
-    <Select value={language} onValueChange={setLanguage}>
+    <Select
+      value={language}
+      onValueChange={(newLanguage: string) => {
+        const validLang = newLanguage as SupportedLanguage
+
+        if (languageClient) {
+          languageClient.dispose()
+          setLanguageClient(null)
+        }
+
+        const serverConfig = SUPPORTED_LANGUAGE_SERVERS.find(s => s.id === validLang)
+        if (serverConfig) {
+          connectToLanguageServer(serverConfig);
+        }
+
+        setLanguage(validLang)
+      }}
+    >
       <SelectTrigger className="w-32 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 [&>span_svg]:text-muted-foreground/80">
         <SelectValue placeholder="Select language" />
       </SelectTrigger>
