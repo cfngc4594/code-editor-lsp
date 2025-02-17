@@ -2,7 +2,7 @@ import { RotateCcw } from "lucide-react"
 import { DEFAULT_VALUE } from "@/config/value"
 import { Button } from "@/components/ui/button"
 import { useCodeEditorStore } from "@/store/useCodeEditorStore"
-import { Tooltip, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 export default function ResetButton() {
   const { editor, language } = useCodeEditorStore()
@@ -34,6 +34,7 @@ export default function ResetButton() {
             <RotateCcw size={16} strokeWidth={2} aria-hidden="true" />
           </Button>
         </TooltipTrigger>
+        <TooltipContent className="px-2 py-1 text-xs">Reset Code</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )

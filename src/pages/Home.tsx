@@ -7,6 +7,7 @@ import RedoButton from '@/components/redo-button'
 import UndoButton from '@/components/undo-button'
 import ResetButton from '@/components/reset-button'
 import { SUPPORTED_THEMES } from '@/constants/theme'
+import FormatButton from '@/components/format-button'
 import { Editor, loader } from '@monaco-editor/react'
 import { ModeToggle } from '@/components/mode-toggle'
 import { CODE_EDITOR_OPTIONS } from '@/constants/option'
@@ -36,6 +37,7 @@ export default function Home() {
           <ResetButton />
           <UndoButton />
           <RedoButton />
+          <FormatButton />
           <CopyButton />
           <ModeToggle />
         </div>

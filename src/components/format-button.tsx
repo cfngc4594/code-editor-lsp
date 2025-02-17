@@ -4,13 +4,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { Redo2 } from "lucide-react"
+import { Paintbrush } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCodeEditorStore } from "@/store/useCodeEditorStore"
-
-export default function RedoButton() {
+  
+export default function FormatButton() {
   const { editor } = useCodeEditorStore()
-
+  
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
@@ -18,15 +18,16 @@ export default function RedoButton() {
           <Button
             variant="outline"
             size="icon"
-            aria-label="Redo Code"
+            aria-label="Format Code"
             onClick={() => {
-              editor?.trigger("redo", "redo", null)
+              editor?.trigger("format", "editor.action.formatDocument", null)
             }}>
-            <Redo2 size={16} strokeWidth={2} aria-hidden="true" />
+            <Paintbrush size={16} strokeWidth={2} aria-hidden="true" />
           </Button>
         </TooltipTrigger>
-        <TooltipContent className="px-2 py-1 text-xs">Redo Code</TooltipContent>
+        <TooltipContent className="px-2 py-1 text-xs">Format Code</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )
 }
+  
