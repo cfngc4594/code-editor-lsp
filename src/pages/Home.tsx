@@ -8,6 +8,7 @@ import UndoButton from '@/components/undo-button'
 import ResetButton from '@/components/reset-button'
 import { SUPPORTED_THEMES } from '@/constants/theme'
 import { ModeToggle } from '@/components/mode-toggle'
+import { CODE_EDITOR_OPTIONS } from '@/constants/option'
 import LanguageToggle from '@/components/language-toggle'
 import { SUPPORTED_LANGUAGES } from '@/constants/language'
 import { useCodeEditorStore } from '@/store/useCodeEditorStore'
@@ -41,7 +42,7 @@ export default function Home() {
           setMonaco(monaco)
         }}
         onMount={(editor) => setEditor(editor)}
-        options={{ minimap: { enabled: false }, automaticLayout: true, padding: { top: 8 } }}
+        options={CODE_EDITOR_OPTIONS}
       />
     </div>
   )
