@@ -7,8 +7,12 @@ export const CODE_EDITOR_OPTIONS: monaco.editor.IEditorConstructionOptions = {
   fontFamily: "Fira Code",
   fontLigatures: true,
   fontSize: 14,
+  guides: {
+    bracketPairs: true,
+    indentation: true,
+  },
+  hideCursorInOverviewRuler: false,
   lineHeight: 20,
-  hideCursorInOverviewRuler: true,
   matchBrackets: "always",
   minimap: {
     enabled: false
@@ -20,5 +24,6 @@ export const CODE_EDITOR_OPTIONS: monaco.editor.IEditorConstructionOptions = {
   scrollbar: {
     horizontalSliderSize: 4,
     verticalSliderSize: 18
-  }
+  },
+  showFoldingControls: "always"
 }
