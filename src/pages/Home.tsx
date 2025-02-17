@@ -21,9 +21,7 @@ export default function Home() {
         theme={theme}
         beforeMount={async (monaco) => {
           const highlighter = await createHighlighter({
-            themes: [
-              ...SUPPORTED_THEMES
-            ],
+            themes: SUPPORTED_THEMES.map(theme => theme.id),
             langs: SUPPORTED_LANGUAGES.map(lang => lang.id)
           })
           shikiToMonaco(highlighter, monaco)
