@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <div className='h-screen flex flex-col'>
-      <header className='h-16 flex items-center justify-between p-4 border-b'>
+      <header className='h-16 flex items-center justify-between p-4 border-b gap-x-2'>
         <LanguageToggle />
         <div className='flex gap-x-2'>
           <ResetButton />
