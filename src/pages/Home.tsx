@@ -1,5 +1,5 @@
+import * as monaco from 'monaco-editor'
 import { createHighlighter } from 'shiki'
-import { Editor } from '@monaco-editor/react'
 import { DEFAULT_VALUE } from '@/config/value'
 import { shikiToMonaco } from '@shikijs/monaco'
 import CopyButton from '@/components/copy-button'
@@ -7,14 +7,26 @@ import RedoButton from '@/components/redo-button'
 import UndoButton from '@/components/undo-button'
 import ResetButton from '@/components/reset-button'
 import { SUPPORTED_THEMES } from '@/constants/theme'
+import { Editor, loader } from '@monaco-editor/react'
 import { ModeToggle } from '@/components/mode-toggle'
 import { CODE_EDITOR_OPTIONS } from '@/constants/option'
 import LanguageToggle from '@/components/language-toggle'
 import { SUPPORTED_LANGUAGES } from '@/constants/language'
+import { connectToLanguageServer } from '@/lib/language-server'
 import { useCodeEditorStore } from '@/store/useCodeEditorStore'
+import { SUPPORTED_LANGUAGE_SERVERS } from '@/config/language-server'
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
+
+self.MonacoEnvironment = {
+  getWorker() {
+    return new editorWorker();
+  },
+}
+
+loader.config({ monaco })
 
 export default function Home() {
-  const { language, theme, setMonaco, setEditor } = useCodeEditorStore()
+  const { language, theme, setMonaco, setEditor, languageClient, setLanguageClient } = useCodeEditorStore()
 
   return (
     <div className='h-screen flex flex-col'>
@@ -29,8 +41,7 @@ export default function Home() {
         </div>
       </header>
       <Editor
-        key={language}
-        language={language}
+        defaultLanguage={language}
         theme={theme}
         defaultValue={DEFAULT_VALUE[language]}
         beforeMount={async (monaco) => {
@@ -41,8 +52,19 @@ export default function Home() {
           shikiToMonaco(highlighter, monaco)
           setMonaco(monaco)
         }}
-        onMount={(editor) => setEditor(editor)}
+        onMount={(editor) => {
+          setEditor(editor)
+          if (languageClient) {
+            languageClient.dispose()
+            setLanguageClient(null)
+          }
+          const serverConfig = SUPPORTED_LANGUAGE_SERVERS.find((s) => s.id === language)
+          if (serverConfig) {
+            connectToLanguageServer(serverConfig);
+          }
+        }}
         options={CODE_EDITOR_OPTIONS}
+        path={`file:///code-${language}`}
       />
     </div>
   )
