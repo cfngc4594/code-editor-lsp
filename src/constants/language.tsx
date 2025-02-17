@@ -1,13 +1,6 @@
-import React from 'react'
 import { COriginal, CplusplusOriginal, JavaOriginal } from 'devicons-react'
 
-export interface LanguageItem {
-  id: string
-  label: string
-  icon: React.ReactNode
-}
-
-export const SUPPORTED_LANGUAGES: LanguageItem[] = [
+export const SUPPORTED_LANGUAGES = [
   {
     id: "c",
     label: "C",
