@@ -5,6 +5,7 @@ import { shikiToMonaco } from '@shikijs/monaco'
 import CopyButton from '@/components/copy-button'
 import RedoButton from '@/components/redo-button'
 import UndoButton from '@/components/undo-button'
+import ResetButton from '@/components/reset-button'
 import { SUPPORTED_THEMES } from '@/constants/theme'
 import { ModeToggle } from '@/components/mode-toggle'
 import LanguageToggle from '@/components/language-toggle'
@@ -19,6 +20,7 @@ export default function Home() {
       <header className='h-16 flex items-center justify-between p-4 border-b'>
         <LanguageToggle />
         <div className='flex gap-x-2'>
+          <ResetButton />
           <UndoButton />
           <RedoButton />
           <CopyButton />
