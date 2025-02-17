@@ -7,10 +7,15 @@ import {
 import { Paintbrush } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCodeEditorStore } from "@/store/useCodeEditorStore"
-  
+import { SUPPORTED_LANGUAGE_SERVERS } from "@/config/language-server"
+
 export default function FormatButton() {
-  const { editor } = useCodeEditorStore()
-  
+  const { editor, language } = useCodeEditorStore()
+
+  const isLanguageSupported = SUPPORTED_LANGUAGE_SERVERS.some(
+    (server) => server.id === language
+  )
+
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
@@ -19,6 +24,7 @@ export default function FormatButton() {
             variant="outline"
             size="icon"
             aria-label="Format Code"
+            disabled={!isLanguageSupported}
             onClick={() => {
               editor?.trigger("format", "editor.action.formatDocument", null)
             }}>
@@ -30,4 +36,3 @@ export default function FormatButton() {
     </TooltipProvider>
   )
 }
-  
