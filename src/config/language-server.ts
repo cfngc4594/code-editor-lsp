@@ -13,7 +13,7 @@ export const SUPPORTED_LANGUAGE_SERVERS: LanguageServerConfig[] = [
   {
     id: "c",
     label: "C",
-    protocol: "http",
+    protocol: "ws",
     hostname: "localhost",
     port: 4594,
     path: "/clangd"
@@ -21,7 +21,7 @@ export const SUPPORTED_LANGUAGE_SERVERS: LanguageServerConfig[] = [
   {
     id: "cpp",
     label: "C++",
-    protocol: "http",
+    protocol: "ws",
     hostname: "localhost",
     port: 4595,
     path: "/clangd"
