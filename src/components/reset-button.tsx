@@ -16,7 +16,20 @@ export default function ResetButton() {
             size="icon"
             aria-label="Reset Code"
             onClick={() => {
-              editor?.setValue(DEFAULT_VALUE[language])
+              if (editor) {
+                const value = DEFAULT_VALUE[language]
+                const model = editor.getModel()
+                if (model) {
+                  const fullRange = model.getFullModelRange()
+                  editor.executeEdits("reset-code", [
+                    {
+                      range: fullRange,
+                      text: value,
+                      forceMoveMarkers: true
+                    }
+                  ])
+                }
+              }
             }}>
             <RotateCcw size={16} strokeWidth={2} aria-hidden="true" />
           </Button>
