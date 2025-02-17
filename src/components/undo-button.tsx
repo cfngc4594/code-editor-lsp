@@ -6,13 +6,23 @@ import {
 } from "@/components/ui/tooltip"
 import { Undo2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useCodeEditorStore } from "@/store/useCodeEditorStore"
 
 export default function UndoButton() {
+  const { editor } = useCodeEditorStore()
+
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="outline" size="icon" aria-label="Undo code">
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label="Undo code"
+            onClick={() => {
+              editor?.trigger("undo", "undo", null)
+            }}
+          >
             <Undo2 size={16} strokeWidth={2} aria-hidden="true" />
           </Button>
         </TooltipTrigger>
