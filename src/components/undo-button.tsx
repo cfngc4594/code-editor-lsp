@@ -18,7 +18,7 @@ export default function UndoButton() {
           <Button
             variant="outline"
             size="icon"
-            aria-label="Undo code"
+            aria-label="Undo Code"
             onClick={() => {
               editor?.trigger("undo", "undo", null)
             }}

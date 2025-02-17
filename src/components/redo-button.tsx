@@ -18,7 +18,7 @@ export default function RedoButton() {
           <Button
             variant="outline"
             size="icon"
-            aria-label="Redo code"
+            aria-label="Redo Code"
             onClick={() => {
               editor?.trigger("redo", "redo", null)
             }}>
