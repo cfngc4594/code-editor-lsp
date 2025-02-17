@@ -1,5 +1,6 @@
 import { createHighlighter } from 'shiki'
 import { Editor } from '@monaco-editor/react'
+import { DEFAULT_VALUE } from '@/config/value'
 import { shikiToMonaco } from '@shikijs/monaco'
 import { SUPPORTED_THEMES } from '@/constants/theme'
 import { ModeToggle } from '@/components/mode-toggle'
@@ -17,8 +18,10 @@ export default function Home() {
         <ModeToggle />
       </header>
       <Editor
+        key={language}
         language={language}
         theme={theme}
+        defaultValue={DEFAULT_VALUE[language]}
         beforeMount={async (monaco) => {
           const highlighter = await createHighlighter({
             themes: SUPPORTED_THEMES.map(theme => theme.id),
