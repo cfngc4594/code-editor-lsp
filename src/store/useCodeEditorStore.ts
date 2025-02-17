@@ -28,7 +28,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set) => ({
   languageClient: null,
   setMonaco: (monaco) => set({ monaco }),
   setEditor: (editor) => set({ editor }),
-  setLanguage: (language) => set({ language: language }),
-  setTheme: (theme) => set({ theme: theme }),
+  setLanguage: (language) => set({ language }),
+  setTheme: (theme) => set({ theme }),
   setLanguageClient: (languageClient) => set({ languageClient })
 }))
