@@ -2,6 +2,7 @@ import { createHighlighter } from 'shiki'
 import { Editor } from '@monaco-editor/react'
 import { DEFAULT_VALUE } from '@/config/value'
 import { shikiToMonaco } from '@shikijs/monaco'
+import CopyButton from '@/components/copy-button'
 import { SUPPORTED_THEMES } from '@/constants/theme'
 import { ModeToggle } from '@/components/mode-toggle'
 import LanguageToggle from '@/components/language-toggle'
@@ -13,9 +14,12 @@ export default function Home() {
 
   return (
     <div className='h-screen flex flex-col'>
-      <header className='h-16 flex items-center justify-between p-4 gap-x-2 border-b'>
+      <header className='h-16 flex items-center justify-between p-4 border-b'>
         <LanguageToggle />
-        <ModeToggle />
+        <div className='flex gap-x-2'>
+          <CopyButton />
+          <ModeToggle />
+        </div>
       </header>
       <Editor
         key={language}
