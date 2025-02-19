@@ -1,6 +1,6 @@
 # monaco-editor-lsp-react
 
-A demo project demonstrating LSP integration using Vite + React + @monaco-editor/react.
+A demo project demonstrating LSP integration using Vite + React + @monaco-editor/react + monaco-languageclient.
 
 ## Quick Start
 
