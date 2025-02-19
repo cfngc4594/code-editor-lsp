@@ -28,3 +28,5 @@ The project includes preconfigured LSP servers for:
 - C++ (port 4595)
 
 Using [jsonrpc-ws-proxy](https://github.com/wylieconlon/jsonrpc-ws-proxy) to bridge Monaco Editor with clangd.
+
+![alt text](demo.png)
