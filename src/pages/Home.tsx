@@ -1,18 +1,16 @@
 import * as monaco from 'monaco-editor'
-import { createHighlighter } from 'shiki'
+import { highlighter } from '@/lib/shiki'
 import { DEFAULT_VALUE } from '@/config/value'
 import { shikiToMonaco } from '@shikijs/monaco'
 import CopyButton from '@/components/copy-button'
 import RedoButton from '@/components/redo-button'
 import UndoButton from '@/components/undo-button'
 import ResetButton from '@/components/reset-button'
-import { SUPPORTED_THEMES } from '@/constants/theme'
 import FormatButton from '@/components/format-button'
 import { Editor, loader } from '@monaco-editor/react'
 import { ModeToggle } from '@/components/mode-toggle'
 import { CODE_EDITOR_OPTIONS } from '@/constants/option'
 import LanguageToggle from '@/components/language-toggle'
-import { SUPPORTED_LANGUAGES } from '@/constants/language'
 import { connectToLanguageServer } from '@/lib/language-server'
 import { useCodeEditorStore } from '@/store/useCodeEditorStore'
 import { SUPPORTED_LANGUAGE_SERVERS } from '@/config/language-server'
@@ -46,11 +44,7 @@ export default function Home() {
         defaultLanguage={language}
         theme={theme}
         defaultValue={DEFAULT_VALUE[language]}
-        beforeMount={async (monaco) => {
-          const highlighter = await createHighlighter({
-            themes: SUPPORTED_THEMES.map(theme => theme.id),
-            langs: SUPPORTED_LANGUAGES.map(lang => lang.id)
-          })
+        beforeMount={(monaco) => {
           shikiToMonaco(highlighter, monaco)
           setMonaco(monaco)
         }}
